@@ -127,8 +127,8 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
     load_state()
-    TOKEN = os.getenv("8242282539:AAFIbs5Yh_Uc-_5dbZdyDBNJQoHTHLG5y7o")
-    app = Application.builder().token(TOKEN).build()
+    bot_token = os.environ.get('bot_token')
+    app = Application.builder().token(bot_token).build()
 
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler("start", start)],
@@ -145,8 +145,8 @@ def main():
     app.run_webhook(
         listen="0.0.0.0",
         port=port,
-        url_path=TOKEN,
-        webhook_url=f"https://{os.environ.get('RENDER_EXTERNAL_HOSTNAME')}/{TOKEN}",
+        url_path=bot_token,
+        webhook_url=f"https://telequizbot.onrender.com//{bot_token}",
     )
 
 if __name__ == "__main__":
