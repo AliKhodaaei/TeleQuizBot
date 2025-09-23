@@ -285,7 +285,7 @@ def main():
         listen="0.0.0.0",
         port=port,
         url_path=bot_token,
-        webhook_url=f"https://telequizbot.onrender.com//{bot_token}",
+        webhook_url=f"https://telequizbot.onrender.com/{bot_token}",
     )
 
 
