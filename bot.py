@@ -99,7 +99,11 @@ async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
         return await ask_question(query, context)
 
 async def finish_quiz(update_or_query, context: ContextTypes.DEFAULT_TYPE):
-    user_id = str(update_or_query.effective_user.id)
+    if isinstance(update_or_query, Update):
+        user_id = str(update_or_query.effective_user.id)
+    else:  # CallbackQuery
+        user_id = str(update_or_query.from_user.id)
+
     player = players[user_id]
 
     leaderboard = sorted(players.values(), key=lambda x: x["score"], reverse=True)
